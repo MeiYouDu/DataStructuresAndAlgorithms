@@ -1,0 +1,15 @@
+{
+  "name": "datastructuresandalgorithms",
+  "version": "1.0.0",
+  "description": "学习数据结构和算法",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha"
+  },
+  "author": "yqm1996",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1"
+  }
+}
