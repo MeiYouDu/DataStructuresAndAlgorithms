@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "学习数据结构和算法",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "npx mocha"
   },
