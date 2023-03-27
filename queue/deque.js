@@ -5,7 +5,16 @@ class Deque {
     this.count = 0;
     this.lowestCount = 0;
     this.items = {};
+
   }
+  /**
+   * 元素总数
+   */
+  count;
+  /**
+   * 第一个元素的索引值
+   */
+  lowestCount;
   addFront(el) {
     if (this.isEmpty()) { // {1}
       this.addBack(element);
