@@ -1,4 +1,4 @@
-export class Node {
-  constructor(public element: any) {}
-  public next?: Node;
+export class Node<T> {
+  constructor(public element: T) {}
+  public next?: Node<T>;
 }
