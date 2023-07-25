@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "npx mocha"
+    "test": "npx mocha",
+    "debug:linkedNode": "npx nodemon linkedlist/linkedList.ts",
+    "debug:test": "npx nodemon loadDll.ts"
   },
   "author": "yqm1996",
   "license": "ISC",
