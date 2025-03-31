@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "npx mocha",
-    "debug:linkedNode": "npx nodemon linkedlist/linkedList.ts",
+    "debug:linkedNode": "npx nodemon src/linkedlist/linkedList.ts",
     "debug:test": "npx nodemon loadDll.ts"
   },
   "author": "yqm1996",
