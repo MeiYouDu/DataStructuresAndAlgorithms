@@ -155,16 +155,17 @@ class LinkedList<T> {
     }
     return str;
   }
+
+  find(fn: (node: Node<T>) => boolean): Node<T> | undefined {
+    let current = this.head;
+    while (current) {
+      if (fn(current)) {
+        return current;
+      }
+      current = current.next;
+    }
+    return undefined;
+  }
 }
 
-const list = new LinkedList<string>();
-list.push("yqm");
-list.push("ljt");
-list.push("sza");
-list.push("wx");
-
-list.insert("tt", 1);
-
-console.log(list.remove("ljt"), "remove");
-
-console.log(list.toString());
+export { LinkedList };
