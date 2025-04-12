@@ -21,7 +21,7 @@ function compare(a: any, b: any): CompareResult {
     return CompareResult.greaterThan;
   }
 }
-//
+
 /**
  * 节点类
  */
