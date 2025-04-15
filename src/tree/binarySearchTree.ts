@@ -56,10 +56,9 @@ class BinarySearchTree<T> {
    * @param value
    */
   public insert(value: T): BinarySearchTree<T> {
-    const node = new Node(value);
     // 如果当前树是空树，则直接将当前节点作为根节点
     if (this.root === null) {
-      this.root = node;
+      this.root = new Node(value);
     } else {
       this.insertNode(this.root, value);
     }
@@ -76,6 +75,7 @@ class BinarySearchTree<T> {
     if (!this.root) return false;
     else {
       const queue: Node<T>[] = [];
+      queue.push(this.root);
       let item: undefined | Node<T>;
       while (queue.length > 0) {
         item = queue.shift();
@@ -146,5 +146,10 @@ class BinarySearchTree<T> {
     }
   }
 }
+
+const tree = new BinarySearchTree<number>();
+tree.insert(10).insert(20).insert(30).insert(5).insert(11).insert(7);
+
+console.log(tree.search(31));
 
 export { BinarySearchTree, Node };
