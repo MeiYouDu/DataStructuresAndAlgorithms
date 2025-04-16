@@ -59,17 +59,19 @@ class BinarySearchTree<T> {
     else {
       const queue: Node<T>[] = [];
       queue.push(this.root);
-      let item: undefined | Node<T>;
+      let item: undefined | Node<T>, res: CompareResult;
       while (queue.length > 0) {
         item = queue.shift();
         // 如果队列为空则表示所有节点都访问过了则跳出循环
         if (!item) break;
+        res = this.compare(item.value, value);
         // 如果当前节点的值等于则返回true
-        if (this.compare(item.value, value) === CompareResult.equal)
-          return true;
-        // 证明当前节点不等于要查询的值，则把当前节点的子节点放入队列继续查找
-        if (item.left) queue.push(item.left);
-        if (item.right) queue.push(item.right);
+        if (res === CompareResult.equal) return true;
+        if (res === CompareResult.greaterThan) {
+          if (item.left) queue.push(item.left);
+        } else if (res === CompareResult.lessThan) {
+          if (item.right) queue.push(item.right);
+        }
       }
       // 循环结束仍一无所则返回false
       return false;
@@ -211,7 +213,11 @@ class BinarySearchTree<T> {
     }
     return node;
   }
-  public remove() {}
+  public remove(value: T): Node<T> | undefined {
+    return;
+    // if(!this.root) return;
+    // if()
+  }
 }
 
 const tree = new BinarySearchTree<number>();
