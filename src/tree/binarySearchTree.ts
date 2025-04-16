@@ -48,23 +48,6 @@ class BinarySearchTree<T> {
    */
   private root: Node<T> | null;
   /**
-   * 比较函数
-   */
-  public compare: (a: T, b: T) => CompareResult = compare;
-  /**
-   * 插入值
-   * @param value
-   */
-  public insert(value: T): BinarySearchTree<T> {
-    // 如果当前树是空树，则直接将当前节点作为根节点
-    if (this.root === null) {
-      this.root = new Node(value);
-    } else {
-      this.insertNode(this.root, value);
-    }
-    return this;
-  }
-  /**
    * search a value in tree, if exist return true else return false
    * 循环代替递归
    */
@@ -145,6 +128,90 @@ class BinarySearchTree<T> {
       }
     }
   }
+  /**
+   * 比较函数
+   */
+  public compare: (a: T, b: T) => CompareResult = compare;
+  /**
+   * 插入值
+   * @param value
+   */
+  public insert(value: T): BinarySearchTree<T> {
+    // 如果当前树是空树，则直接将当前节点作为根节点
+    if (this.root === null) {
+      this.root = new Node(value);
+    } else {
+      this.insertNode(this.root, value);
+    }
+    return this;
+  }
+  public inOrderTraverse(cb: (node: Node<T>) => void) {
+    if (!this.root) return;
+    const stack: Node<T>[] = [];
+    let node: Node<T> | null = this.root;
+    while (stack.length > 0 || node) {
+      while (node) {
+        // 循环将left放入栈中
+        stack.push(node);
+        node = this.root.left;
+      }
+      // 取出left
+      node = stack.pop()!;
+      if (!node) continue;
+      cb(node);
+      // 转向right
+      node = node.right;
+    }
+  }
+  public preOrderTraverse(cb: (node: Node<T>) => void) {
+    if (!this.root) return;
+    const stack: Node<T>[] = [];
+    let node: Node<T> | null = this.root;
+    while (stack.length > 0 || node) {
+      while (node) {
+        // 直接调用，保证先处理中节点
+        cb(node);
+        stack.push(node);
+        node = this.root.left;
+      }
+      node = stack.pop()!;
+      if (!node) continue;
+      node = node.right;
+    }
+  }
+  public postOrderTraverse(cb: (node: Node<T>) => void) {
+    if (!this.root) return;
+    const stack: (Node<T> | null)[] = [];
+    let node: Node<T> | null = this.root;
+    node && stack.push(node);
+    while (stack.length > 0) {
+      node = stack.pop()!;
+      if (node === null) {
+        node = stack.pop()!;
+        node && cb(node);
+      } else {
+        stack.push(node);
+        stack.push(null);
+        if (node.right) stack.push(node.right);
+        if (node.left) stack.push(node.left);
+      }
+    }
+  }
+  public min() {
+    let node: Node<T> | null = this.root;
+    while (node) {
+      node = node.left;
+    }
+    return node;
+  }
+  public max() {
+    let node: Node<T> | null = this.root;
+    while (node) {
+      node = node.right;
+    }
+    return node;
+  }
+  public remove() {}
 }
 
 const tree = new BinarySearchTree<number>();
@@ -152,4 +219,4 @@ tree.insert(10).insert(20).insert(30).insert(5).insert(11).insert(7);
 
 console.log(tree.search(31));
 
-export { BinarySearchTree, Node };
+export { BinarySearchTree, compare, CompareResult, Node };
