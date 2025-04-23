@@ -57,6 +57,7 @@ class BinarySearchTree<T> {
      */
     if (!this.root) return false;
     else {
+      //TODO 直接用指针不需要用队列
       const queue: Node<T>[] = [];
       queue.push(this.root);
       let item: undefined | Node<T>, res: CompareResult;
@@ -106,6 +107,7 @@ class BinarySearchTree<T> {
    * @param value
    */
   private insertNodeLoop(node: Node<T>, value: T) {
+    //TODO 直接用指针，不需要用队列
     const queue: Node<T>[] = [];
     let item: undefined | Node<T>, res: CompareResult;
     queue.push(node);
@@ -214,9 +216,21 @@ class BinarySearchTree<T> {
     return node;
   }
   public remove(value: T): Node<T> | undefined {
-    return;
-    // if(!this.root) return;
-    // if()
+    if (!this.root) return;
+    let current: Node<T> | null = this.root,
+      res: CompareResult;
+    while (current) {
+      res = this.compare(current.value, value);
+      if (res === CompareResult.equal) {
+        //TODO  处理删除逻辑
+        return current;
+      }
+      if (res === CompareResult.greaterThan) {
+        current = current.left;
+      } else if (res === CompareResult.lessThan) {
+        current = current.right;
+      }
+    }
   }
 }
 
