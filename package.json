@@ -2,21 +2,19 @@
   "name": "datastructuresandalgorithms",
   "version": "1.0.0",
   "description": "学习数据结构和算法",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "npx mocha",
-    "debug:linkedNode": "npx nodemon src/linkedlist/linkedList.ts",
-    "debug:hashMap": "npx nodemon src/map/hashMap.ts",
-    "debug:tree": "npx nodemon src/tree/binarySearchTree.ts",
-    "debug:test": "npx nodemon loadDll.ts"
+    "debug:linkedNode": "npx tsx --watch src/linkedlist/linkedList.ts",
+    "debug:hashMap": "npx tsx --watch src/map/hashMap.ts",
+    "debug:tree": "npx tsx --watch src/tree/binarySearchTree.ts"
   },
   "author": "yqm1996",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^10.2.0",
-    "nodemon": "^2.0.22",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.2"
+    "jest": "30.0.0-beta.3",
+    "mocha": "^10.8.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   }
 }
