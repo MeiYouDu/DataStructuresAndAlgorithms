@@ -40,6 +40,21 @@ class LinkedList<T> {
     this.count++;
   }
 
+  public inverse(): LinkedList<T> {
+    if (!this.head) return this;
+    let last = undefined,
+      current: undefined | Node<T> = this.head,
+      next = current.next;
+    while (current) {
+      next = current.next;
+      current.next = last;
+      last = current;
+      current = next;
+    }
+    this.head = last;
+    return this;
+  }
+
   /**
    * 向链表指定位置插入一个元素
    * @param element 元素
@@ -166,6 +181,29 @@ class LinkedList<T> {
     }
     return undefined;
   }
+
+  public forEach(fn: (node: Node<T>, index?: number) => void) {
+    let i = 0,
+      current = this.head;
+    while (current) {
+      fn(current, i);
+      current = current?.next;
+      i++;
+    }
+  }
 }
+
+const list = new LinkedList<string>();
+
+list.push("yqm1");
+list.push("yqm2");
+list.push("yqm3");
+list.push("yqm4");
+
+list.inverse().forEach((item) => {
+  console.log(item.element);
+});
+
+console.log(list.toString());
 
 export { LinkedList };
